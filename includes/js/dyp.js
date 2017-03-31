@@ -24,6 +24,139 @@ $(document).ready(function(){
 	var LCTotalesNull = 0; //PagosPMEfectivo
 	var TotalesNormalVen = 0;
 	var TotalesNormalWeb = 0;
+	var contActiv={series:"cont1",property:"activ"};
+	var contInit={series:"cont1",property:"init"};
+	$.post('includes/php/render.php',contActiv,function(result1){
+		var cont1Activ=result1;
+		$.post('includes/php/render.php',contInit,function(result2){
+			var cont1Init=result2;
+			//chartLineas.series[1].setData(recibidasHist);
+			var chartCont1 = Highcharts.stockChart('c1',{
+				chart:{
+					type:'line',
+					zoomType:'x',
+					panning:true,
+					panKey:'shift'
+				},
+				title:{text:''},
+				navigator:{enabled:false},
+				scrollbar:{enabled:false},
+				rangeSelector:{selected:0},
+				legend:{
+					enabled:true,
+					layout:'vertical',
+					/*labelFormatter:function(){
+						var count=0;
+						for(var i=0;i<this.yData.length;i++){
+							count+=this.yData[i];
+						}
+						return 'Acumulado de '+this.name+': '+count;
+					},*/
+					floating:true,
+					align:'left',
+					verticalAlign:'middle'
+				},
+				series:[{
+					name:'Sesiones Activas',
+					data:cont1Activ
+				},{
+					name:'Inicios de Sesión',
+					data:cont1Init
+				}]
+			});
+			
+		},"json");
+	},"json");
+	$.post('includes/php/render.php',contInit,function(result1){
+		var IniciosThis=result1;
+		$.post('includes/php/render.php',{series:'cont1'},function(result2){
+			var IniciosLast=result2;
+			for(var i in IniciosLast){
+				IniciosLast[i][0]+=31550400000;
+			}
+			//chartLineas.series[1].setData(recibidasHist);
+			var compInit = Highcharts.stockChart('c2',{
+				chart:{
+					type:'line',
+					zoomType:'x',
+					panning:true,
+					panKey:'shift'
+				},
+				title:{text:''},
+				navigator:{enabled:false},
+				scrollbar:{enabled:false},
+				rangeSelector:{selected:0},
+				legend:{
+					enabled:true,
+					layout:'vertical',
+					/*labelFormatter:function(){
+						var count=0;
+						for(var i=0;i<this.yData.length;i++){
+							count+=this.yData[i];
+						}
+						return 'Acumulado de '+this.name+': '+count;
+					},*/
+					floating:true,
+					align:'left',
+					verticalAlign:'middle'
+				},
+				series:[{
+					name:'Año Actual',
+					data:IniciosThis
+				},{
+					name:'Año Pasado',
+					data:IniciosLast
+				}]
+			});
+			
+		},"json");
+	},"json");
+	$.post('includes/php/render.php',{pie:'obtencion'},function(result){
+			// La Cont 3
+			Highcharts.chart('c3',{
+				chart:{
+					type:'pie',
+					zoomType:'x',
+					panning:true,
+					panKey:'shift'
+				},
+				title:{text:'',},
+				tooltip:{pointFormat:'<b>{point.percentage:.1f}%<br><b>{point.y}</b>'},
+				plotOptions:{
+					pie:{
+						allowPointSelect:true,
+						size:"80%",
+					}
+				},
+				plotOptions:{
+					pie:{
+						dataLabels:{
+							enabled:true,
+							format:'{point.name}:<br>{y}'
+						},
+						enableMouseTracking:true
+					}
+				},
+				yAxis:{type: 'logarithmic'},
+				series:[{
+					startAngle:-90,
+					name:'Declaraciones',
+					data:[{
+						name:'CIEC',
+						y:parseInt(result[0].CIEC)
+					},{
+						name:'FIEL',
+						y:parseInt(result[0].FIEL)
+					},{
+						name:'OTP',
+						y:parseInt(result[0].OTP)
+					},{
+						name:'Contraseña',
+						y:parseInt(result[0].PSW)
+					}]
+				}]
+			});
+	},"json");
 	$.post('includes/php/render.php',{data:'fetch'},function(tree){
 		function readCache(tree){
 			for(var values in tree['children']){
@@ -602,91 +735,4 @@ $(document).ready(function(){
 			}]
 		});
 	},"json");
-	// ventanilla o internet
-	/*var internet=[{name: 'Internet',
-		data: [
-				['Normales',0],
-				['Dejar sin Efecto Obligación',40],
-				['Modificación de Obligaciones',1866],
-				['Obligación no presentada',17],
-				['Actualización de Importe',0],
-				['Esquema Anterior',1]
-			]}];
-	internet.forEach(function(name){
-		name.data.sort(function (a,b) {
-			if(a[1] < b[1]) {
-				return 1;
-			}
-			else if (a[1] > b[1]) {
-				return -1;
-			}
-			return 0;
-		});
-	});
-	Highcharts.chart('hi',{
-		chart:{
-			type:'pyramid',
-			marginRight: 200
-		},
-		title:{text:''},
-		type: 'logarithmic',
-		plotOptions:{
-			series: {dataLabels: {enabled: true}},
-			pyramid:{
-				minSize:30,
-				width:'70%',
-				events: {
-					legendItemClick: function () {
-						return false;
-					}
-				}
-			}
-		},
-		legend: {enabled: true},
-		series: internet
-	});
-	// ventanilla o internet
-	var ventanilla=[{name: 'Ventanilla',
-		data: [
-				['Normales',0],
-				['Dejar sin Efecto Obligación',0],
-				['Modificación de Obligaciones',0],
-				['Obligación no presentada',0],
-				['Actualización de Importe',0],
-				['Esquema Anterior',0]
-			]}];
-	ventanilla.forEach(function(name){
-		name.data.sort(function (a,b) {
-			if(a[1] < b[1]) {
-				return 1;
-			}
-			else if (a[1] > b[1]) {
-				return -1;
-			}
-			return 0;
-		});
-	});
-	Highcharts.chart('h',{
-		chart:{
-			type:'pyramid',
-			marginRight: 200
-		},
-		title:{text:''},
-		type: 'logarithmic',
-		plotOptions:{
-			series: {dataLabels: {enabled: true}},
-			pyramid:{
-				minSize:30,
-				width:'70%',
-				events: {
-					legendItemClick: function () {
-						return false;
-					}
-				}
-			}
-		},
-		legend: {enabled: true},
-		series: ventanilla
-	});*/
-	// ingresos por banco
 });

@@ -120,14 +120,14 @@ class NOCface{
 		}
 	}
 	public function myNextSeries($cursor){
-		$throttle = array("maxRecords" => 288);
+		$throttle = array("maxRecords" => 0);
 		$result = $this->client->call('nextSeriesData', array(
 			"session" => $this->ws_token,
 			"cursor" => $cursor,
 			"throttle" => $throttle
 		));
-		if(isset($result['nextSeriesDataReturn']['dataPoints']['item'])){
-			foreach($result['nextSeriesDataReturn']['dataPoints']['item'] as $item => $register){
+		if(isset($result['nextSeriesDataReturn']['dataPoints']['dataPoints'])){
+			foreach($result['nextSeriesDataReturn']['dataPoints']['dataPoints'] as $item => $register){
 				$this->allSeries[] = $register;
 			}
 			$cursor = $result['nextSeriesDataReturn']['cursor'];
@@ -136,36 +136,35 @@ class NOCface{
 			}
 		}
 	}
-	public function mySeries($dn,$offset,$seriesDescriptor){
-		$this->allSeries = null;
+	public function mySeries($dn,$offset,$expression,$profile){
+		$this->allSeries=null;
 		do{
-			$prev = (string)date("Y-m-d\TH:i:s.000\Z",time()-$offset);
-			$now = (string)date("Y-m-d\TH:i:s.000\Z",time()-$offset);
-			$offset = $offset - (5*24*60*60);
-			$throttle = array("maxRecords" => 288);
-			//$seriesDescriptor=$this->getSeriesDescriptors($dn);
-			$seriesDescriptor['from'] = $prev;
-			$seriesDescriptor['to'] = $now;
-			$result = $this->client->call('getSeriesData', array(
-				"session" => $this->ws_token,
-				"elementDName" => $dn,
-				"throttle" => $throttle,
-				"seriesDescriptor" => $seriesDescriptor
+			$prev=(string)date("Y-m-d\TH:i:s.000\Z",time()-$offset);
+			$now=(string)date("Y-m-d\TH:i:s.000\Z",time()-$offset+(24*60*60));
+			$throttle=array("maxRecords"=>0);
+			$seriesDescriptor['from']=$prev;
+			$seriesDescriptor['to']=$now;
+			$seriesDescriptor['expressionName']=$expression;
+			$seriesDescriptor['profileName']=$profile;
+			$seriesDescriptor['type']="TYPE_SIMPLE_FLOAT";
+			$result=$this->client->call('getSeriesData',array(
+				"session"=>$this->ws_token,
+				"elementDName"=>$dn,
+				"throttle"=>$throttle,
+				"seriesDescriptor"=>$seriesDescriptor
 			));
-			if(isset($result['getSeriesDataReturn']['dataPoints']['item'])){
-				foreach($result['getSeriesDataReturn']['dataPoints']['item'] as $item => $register){
-					//$this->counter++;
-					//echo "<br>Get: ".$this->counter." -> ";
-					//print_r($register);
-					$this->allSeries[] = $register;
+			if(isset($result['getSeriesDataReturn']['dataPoints']['dataPoints'])){
+				foreach($result['getSeriesDataReturn']['dataPoints']['dataPoints'] as $item=>$register){
+					$this->allSeries[]=$register;
 				}
-				$cursor = $result['getSeriesDataReturn']['cursor'];
+				$cursor=$result['getSeriesDataReturn']['cursor'];
 				while($cursor != null){
-					$cursor = $this->myNextSeries($cursor);
+					$cursor=$this->myNextSeries($cursor);
 				}
 			}
+			$offset=$offset-(24*60*60);
 		}
-		while($offset >= (5*24*60*60));
+		while($offset>=(24*60*60));
 		return $this->allSeries;
 	}
 }

@@ -5,6 +5,19 @@ include_once'memInt.php';
 //include_once'psqInt.php';
 $NOC=new NOCface($nocAddr,$nocUser,$nocPass);
 $cache=new Cache($memAddr,$memPort,$memExpi);
+function getAllSeries(){
+	global$NOC;
+	global$cache;
+	global$timeOffset;
+	global$seriesNames;
+	foreach($seriesNames as $graph => $pltfrm){
+		foreach($pltfrm as $key => $value){
+			$temp=$NOC->mySeries($value['DN'],$timeOffset,$value['value'],$value['profile']);
+			$cache->set($graph."_".$key,$temp);
+			$NOC->allSeries=null;
+		}
+	}
+}
 function flood($dn,$tree){
 	global$NOC;
 	global$cache;
@@ -15,7 +28,7 @@ function flood($dn,$tree){
 		$tree+=array("condition"=>$result['condition']);
 		//$childRight=(empty($result['includedChildDNames']))?'rightRelationshipInfo':'includedChildDNames';
 		$childRight='includedChildDNames';
-		if(is_array($result['seriesDescriptors'])){
+		/*if(is_array($result['seriesDescriptors'])){
 			$tree+=array('series'=>array());
 			if(isset($result['seriesDescriptors']['seriesDescriptors'][0])){
 				foreach($result['seriesDescriptors']['seriesDescriptors']as$key=>$value){
@@ -39,7 +52,7 @@ function flood($dn,$tree){
 					$tree['series'][$result['seriesDescriptors']['seriesDescriptors']['expressionName']]=$result['DName'];
 				}
 			}
-		}
+		}*/
 		if(isset($result[$childRight][$childRight])){
 			if(isset($result[$childRight]['item']['relatedDName'])){
 				$tree+=array("children"=>array(0=>""));
@@ -81,27 +94,39 @@ function seriesPsql(){
 	global$psqlDbs;
 	global$psqlUsr;
 	global$psqlPss;
-	global$psqlTbl;
 	global$cache;
 	$dbconn=pg_connect("host=".$psqlAdd." dbname=".$psqlDbs." user=".$psqlUsr." password=".$psqlPss)
 	or die('No se ha podido conectar: ' . pg_last_error());
+	$psqlTbl = 'historicos';
 	$query='SELECT "PAGOSXHORA" as value,"FECHAHORA" as timestamp FROM '.$psqlTbl.' order by "FECHAHORA"';
-	$result=pg_query($query) or die('La consulta fallo: '.pg_last_error());
+	$result=pg_query($query) or die('La consulta falla: '.pg_last_error());
 	$result=pg_fetch_all($result);
 	$cache->set('pagos',$result);
 	$psqlTbl='historicosrlc';
 	$query='SELECT "TOTALLC" as value,"FECHAHORA" as timestamp FROM '.$psqlTbl.' order by "FECHAHORA"';
-	$result=pg_query($query) or die('La consulta fallo: '.pg_last_error());
+	$result=pg_query($query) or die('La consulta falla: '.pg_last_error());
 	$result=pg_fetch_all($result);
 	$cache->set('lineas',$result);
 	$query='SELECT "TOTALRECIBIDAS" as value,"FECHAHORA" as timestamp FROM '.$psqlTbl.' order by "FECHAHORA"';
-	$result=pg_query($query) or die('La consulta fallo: '.pg_last_error());
+	$result=pg_query($query) or die('La consulta falla: '.pg_last_error());
 	$result=pg_fetch_all($result);
 	$cache->set('recibidas',$result);
-	echo "<br>Consulta:<br>";
-	print_r($result);
+	// situación emergente
+	$psqlTbl = '"Auth2016"';
+	$query='SELECT "Autenticaciones" as value,fechahora as timestamp FROM '.$psqlTbl.' order by fechahora';
+	$result=pg_query($query) or die('La consulta falla: '.pg_last_error());
+	$result=pg_fetch_all($result);
+	$cache->set('cont1',$result);
+	// obtenciones
+	$psqlTbl = '"Obtencion"';
+	$query='SELECT dia, "CIEC", "FIEL", "OTP", "PSW" FROM '.$psqlTbl.' order by dia';
+	$result=pg_query($query) or die('La consulta falla: '.pg_last_error());
+	$result=pg_fetch_all($result);
+	$cache->set('obtencion',$result);
+		
 	pg_close($dbconn);
 }
+getAllSeries();
 seriesPsql();
 $tree=array();
 $tree=flood($root,$tree);

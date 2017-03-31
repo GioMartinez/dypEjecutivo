@@ -62,44 +62,6 @@ include_once('includes/php/config.php');
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Cont1</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="c1"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Cont2</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="c2"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Cont3</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="c3"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
 				<div class="col-sm-3 col-xs-12" style="display: none;">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4 class="panel-title" id="decRec">Declaraciones Recibidas</h4></div>
@@ -112,6 +74,44 @@ include_once('includes/php/config.php');
 						</div>
 					</div>
 				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h4 class="panel-title">Contencion</h4></div>
+						<div class="embed-responsive others">
+							<div class="panel-body embed-responsive-item">
+								<div class="row">
+									<div class="col-xs-12" id="c1"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h4 class="panel-title">Contencion</h4></div>
+						<div class="embed-responsive others">
+							<div class="panel-body embed-responsive-item">
+								<div class="row">
+									<div class="col-xs-12" id="c2"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h4 class="panel-title">Contencion</h4></div>
+						<div class="embed-responsive others">
+							<div class="panel-body embed-responsive-item">
+								<div class="row">
+									<div class="col-xs-12" id="c3"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-6 col-xs-12">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4 class="panel-title">Recepción vs Línea de Captura</h4></div>
