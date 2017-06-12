@@ -61,17 +61,7 @@ Highcharts.theme={
 		shadow:false,
 		shared:true,
 		followPointer:true,
-		pointFormat:'<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>'/*,
-		dateTimeLabelFormats:{
-			millisecond:'%H:%M:%S.%L',
-			second:'%H:%M:%S',
-			minute:'%e %b %H:%M',
-			hour:'%e %b %H:%M',
-			day:'%e. %b %H:%M',
-			week:'%e. %b %H:%M',
-			month:'%b \'%y',
-			year:'%Y'
-		}*/
+		pointFormat:'<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y:,.0f}</b><br/>'
 	},
 	xAxis:{
 		allowDecimals:false,
@@ -88,17 +78,7 @@ Highcharts.theme={
 		visible:false,
 		endOnTick:false,
 		tickPixelInterval:50,
-		minTickInterval:60000/*,
-		dateTimeLabelFormats:{
-			millisecond:'%H:%M:%S.%L',
-			second:'%H:%M:%S',
-			minute:'%e %b %H:%M',
-			hour:'%e %b %H:%M',
-			day:'%e. %b %H:%M',
-			week:'%e. %b %H:%M',
-			month:'%b \'%y',
-			year:'%Y'
-		}*/
+		minTickInterval:60000
 	},
 	yAxis:{
 		allowDecimals:false,

@@ -11,6 +11,7 @@ include_once('includes/php/config.php');
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="includes/css/normalize.css"/>
 	<link rel="stylesheet" href="includes/css/bootstrap.css"/>
+	<link rel="stylesheet" href="includes/css/font-awesome.css"/>
 	<link rel="stylesheet" href="includes/css/main.css"/>
 </head>
 <body>
@@ -25,38 +26,31 @@ include_once('includes/php/config.php');
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Histórico de Pagos por Linea de Captura</h4></div>
-						<div class="embed-responsive embed-responsive-32by9">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="a"></div>
-								</div>
-							</div>
+						<div class="panel-heading">
+							<h4 class="panel-title">Histórico de Pagos por Linea de Captura</h4>
+							<a class="btn" id="pagosbtn">
+								<i class="fa fa-expand" aria-hidden="true"></i>
+							</a>
+						</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="a"></div>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-2 col-xs-12">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4 class="panel-title">Tipo de Contribuyente</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12 half" id="b"></div>
-									<div class="col-xs-12 half" id="c"></div>
-								</div>
-							</div>
+						<div class="panel-body">
+							<div class="col-xs-12 half" id="b"></div>
+							<div class="col-xs-12 half" id="c"></div>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4 class="panel-title">Meta de Recaudación (2.8 Billones)</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="d"></div>
-								</div>
-							</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="d"></div>
 						</div>
 					</div>
 				</div>
@@ -64,37 +58,35 @@ include_once('includes/php/config.php');
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Cont1</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="c1"></div>
-								</div>
-							</div>
+						<div class="panel-heading">
+							<h4 class="panel-title">Autenticaciones vs Intentos</h4>
+							<a class="btn" id="autvsintbtn">
+								<i class="fa fa-expand" aria-hidden="true"></i>
+							</a>
+						</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="c1"></div>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Cont2</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="c2"></div>
-								</div>
-							</div>
+						<div class="panel-heading">
+							<h4 class="panel-title">Ejercicio Actual vs Anterior</h4>
+							<a class="btn" id="comparbtn">
+								<i class="fa fa-expand" aria-hidden="true"></i>
+							</a>
+						</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="c2"></div>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Cont3</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="c3"></div>
-								</div>
-							</div>
+						<div class="panel-heading"><h4 class="panel-title">Obtención de nuevas Contraseñas</h4></div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="c3"></div>
 						</div>
 					</div>
 				</div>
@@ -103,62 +95,42 @@ include_once('includes/php/config.php');
 				<div class="col-sm-3 col-xs-12" style="display: none;">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4 class="panel-title" id="decRec">Declaraciones Recibidas</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="e"></div>
-								</div>
-							</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="e"></div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 col-xs-12">
+				<div class="col-sm-3 col-xs-12">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h4 class="panel-title">Recepción vs Línea de Captura</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="f"></div>
-								</div>
-							</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="f"></div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 col-xs-12">
+				<div class="col-sm-4 col-xs-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Histórico de Recepción vs Línea de Captura</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="g"></div>
-								</div>
-							</div>
+						<div class="panel-heading">
+							<h4 class="panel-title">Histórico de Recepción vs Línea de Captura</h4>
+							<a class="btn" id="lineasbtn">
+								<i class="fa fa-expand" aria-hidden="true"></i>
+							</a>
+						</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="g"></div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6 col-xs-12">
+				<div class="col-sm-5 col-xs-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Declaraciones Recibidas</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="h"></div>
-								</div>
-							</div>
+						<div class="panel-heading">
+							<h4 class="panel-title">Declaraciones Recibidas</h4>
+							<a class="btn" id="recibidasbtn">
+								<i class="fa fa-expand" aria-hidden="true"></i>
+							</a>
 						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-xs-12">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h4 class="panel-title">Entidades Financieras</h4></div>
-						<div class="embed-responsive others">
-							<div class="panel-body embed-responsive-item">
-								<div class="row">
-									<div class="col-xs-12" id="i"></div>
-								</div>
-							</div>
+						<div class="panel-body">
+							<div class="col-xs-12" id="h"></div>
 						</div>
 					</div>
 				</div>
