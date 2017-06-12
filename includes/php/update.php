@@ -119,7 +119,7 @@ function seriesPsql(){
 	$cache->set('cont1',$result);
 	// obtenciones
 	$psqlTbl = '"Obtencion"';
-	$query='SELECT dia, "CIEC", "FIEL", "OTP", "PSW" FROM '.$psqlTbl.' order by dia';
+	$query='SELECT dia, "CIEC", "FIEL", "OTP", "PSW" FROM '.$psqlTbl.' order by dia desc';
 	$result=pg_query($query) or die('La consulta falla: '.pg_last_error());
 	$result=pg_fetch_all($result);
 	$cache->set('obtencion',$result);

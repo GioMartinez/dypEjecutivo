@@ -19,6 +19,18 @@ header{
 	clear:both;
 	padding:5px;
 }
+.panel-fullscreen{
+	display: block;
+	z-index: 9999;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	overflow: auto;
+}
 .panel{
 	margin-bottom:5px;
 }
@@ -27,12 +39,25 @@ header{
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
+	white-space:normal;
+}
+.panel-title{
+	display:inline-block;
+}
+.panel-heading>.btn{
+	padding:0;
+	display:inline-block;
+	float:right;
 }
 .panel-body{
 	padding:5px;
+	height:180px;
 }
 .panel-body > .row{
 	height:100%;
+}
+.half{
+	height:90px!important;
 }
 .col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12{
 	height:100%;
@@ -44,9 +69,6 @@ header{
 }
 .alert{
 	margin-bottom:5px;
-}
-.embed-responsive-32by9{
-	padding-bottom:28.125%;
 }
 .highcharts-tracker{
 	text-align:center;

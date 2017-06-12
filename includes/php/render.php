@@ -22,7 +22,7 @@ if(isset($_POST)&&!empty($_POST)){
 		$series=array();
 		$series=$cache->get($dn."_".$property);
 		foreach ($series as $key => $value) {
-			$series[$key][0] = (strtotime($value['timestamp'])*1000)-(6*60*60*1000);
+			$series[$key][0] = (strtotime($value['timestamp'])*1000)-(5*60*60*1000);
 			$series[$key][1] = intval($value['value']);
 			unset($series[$key]['timestamp']);
 			unset($series[$key]['value']);
@@ -36,7 +36,7 @@ if(isset($_POST)&&!empty($_POST)){
 		$series=array();
 		$series=$cache->get($dn);
 		foreach ($series as $key => $value) {
-			$series[$key][0] = (strtotime($value['timestamp'])*1000)-(6*60*60*1000);
+			$series[$key][0] = (strtotime($value['timestamp'])*1000)-(5*60*60*1000);
 			$series[$key][1] = intval($value['value']);
 			unset($series[$key]['timestamp']);
 			unset($series[$key]['value']);
