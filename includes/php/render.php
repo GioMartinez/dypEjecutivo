@@ -10,6 +10,13 @@ if(isset($_POST)&&!empty($_POST)){
 		$test=$cache->get($root);
 		return json_encode($test);
 	}
+	function fetchModal(){
+		global$cache;
+		global$dypModel;
+		$test=array();
+		$test=$cache->get($dypModel);
+		return json_encode($test);
+	}
 	function fetchCachePie(){
 		global$cache;
 		global$root;
@@ -46,7 +53,12 @@ if(isset($_POST)&&!empty($_POST)){
 		return json_encode($series);
 	}
 	if(isset($_POST['data'])&&!empty($_POST['data'])){
-		echo fetchCache();
+		if($_POST['data'] == "fetch"){
+			echo fetchCache();
+		}
+		else{
+			echo fetchModal();
+		}
 	}
 	elseif(isset($_POST['pie'])&&!empty($_POST['pie'])){
 		echo fetchCachePie();

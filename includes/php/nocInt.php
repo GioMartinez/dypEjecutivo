@@ -76,13 +76,15 @@ class NOCface{
 			"channelName"=>"REALTIME",
 			"throttle"=>$responseThrottle
 		));
-		if(isset($result['getAlarmsReturn']['alarms']['alarms'][0])){
-			return null;
-		}
-		else{
-			foreach($result['getAlarmsReturn']['alarms']['alarms']['fields']['fields'] as$key=>$value){
-				if($value['name']=='Description'){
-					return $value['value'];
+		if(isset($result['getAlarmsReturn']['alarms']['alarms'])){
+			if(isset($result['getAlarmsReturn']['alarms']['alarms'][0])){
+				return null;
+			}
+			else{
+				foreach($result['getAlarmsReturn']['alarms']['alarms']['fields']['fields'] as$key=>$value){
+					if($value['name']=='Description'){
+						return $value['value'];
+					}
 				}
 			}
 		}

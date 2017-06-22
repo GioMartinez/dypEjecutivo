@@ -1,3 +1,7 @@
+body{
+	overflow-y:auto;
+	overflow-x:hidden;
+}
 header{
 	clear:both;
 }
@@ -56,8 +60,16 @@ header{
 .panel-body > .row{
 	height:100%;
 }
+.panel-top > .panel-body{
+	padding:5px;
+	height:48px;
+}
 .half{
 	height:90px!important;
+}
+.color-up{
+	margin:0;
+	color:green;
 }
 .col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12{
 	height:100%;

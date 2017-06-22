@@ -10,18 +10,19 @@ ini_set('variables_order','GPCS');
 error_reporting(E_ALL ^ E_DEPRECATED);
 // NOC connection parameters
 date_default_timezone_set("UTC");
-$nocAddr = 'http://127.0.0.1:8084/wsapi/services/Moswsapi_1_1?wsdl';
+$nocAddr = 'http://10.55.156.75:8084/wsapi/services/Moswsapi_1_1?wsdl';
 $nocUser = 'admin';
 $nocPass = 'formula';
 $nocPass = base64_encode(hash('md5',$nocPass,true));
 $memAddr = '127.0.0.1';
 $memPort = '11211';
 $memExpi = 4;
-$psqlAdd = 'localhost';
+$psqlAdd = '10.55.156.75';
 $psqlUsr = 'dbuser';
 $psqlDbs = 'dyp';
 $psqlPss = 'Novell2017';
 $root = "Ejecutivo=Ejecutivo/DyPAnuales=DyPAnuales/root=Elements";
+$dypModel = "gen_chart=DyP-Ejecutivo/root=Organizations";
 $timeOffset = 1*24*60*60;
 $seriesNames=array(
 	"cont1"=>array(

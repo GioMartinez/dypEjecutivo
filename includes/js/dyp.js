@@ -122,6 +122,13 @@ $(document).ready(function(){
 			itemHoverStyle:{color:'gray'}
 		}
 	};
+	// Flip function not hover function
+	$("#flip").flip({axis: 'x'});
+	var hover=0;
+	window.setInterval(function(){
+		$("#flip").hover(function(){hover=1;},function(){hover=0;});
+		if(hover==0){$("#flip").flip('toggle');}
+	},2000);
 	// Apply the theme
 	var pagosChart=0;
 	var autvsIntChart=0;
@@ -338,6 +345,56 @@ $(document).ready(function(){
 						}]
 					}]
 				});
+		},"json");
+		$.post('includes/php/render.php',{data:'fetchModel'},function(tree){
+			function readModel(tree){
+				for(var val1 in tree['children']){
+					//autenticaciones
+					if(tree['children'][val1]['DName'].indexOf('AtenticacionesyUsuarios') !== -1){	
+						for(var val2 in tree['children'][val1]['children']){
+							//nuevos contribuyentes
+							if(tree['children'][val1]['children'][val2]['DName'].indexOf('NuevosContribuyentes') !== -1){
+								var sumaNuevos=parseInt(tree['children'][val1]['children'][val2]['children'][0]['children'][0]['values'])+parseInt(tree['children'][val1]['children'][val2]['children'][1]['children'][0]['values']);
+								document.getElementById('val_3').innerHTML=sumaNuevos;
+							}
+						}
+					}
+					//identidades
+					else if(tree['children'][val1]['DName'].indexOf('Identidades') !== -1){
+					}
+					//declaraciones
+					else if(tree['children'][val1]['DName'].indexOf('Declaraciones') !== -1){
+						for(var val2 in tree['children'][val1]['children']){
+							//total declaraciones
+							if(tree['children'][val1]['children'][val2]['DName'].indexOf('TotalDeclaraciones') !== -1){
+							}
+							//total recaudado
+							else if(tree['children'][val1]['children'][val2]['DName'].indexOf('TotalRecaudado') !== -1){
+							}
+						}
+					}
+					//pruebas sinteticas
+					else if(tree['children'][val1]['DName'].indexOf('PruebasSinteticas') !== -1){
+						for(var val2 in tree['children'][val1]['children']){
+							//flujoCCN
+							if(tree['children'][val1]['children'][val2]['DName'].indexOf('FlujoCCN') !== -1){
+							}
+							//TOPPS
+							else if(tree['children'][val1]['children'][val2]['DName'].indexOf('TOPPS') !== -1){
+							}
+						}
+					}
+					//disponibilidad
+					else if(tree['children'][val1]['DName'].indexOf('DisponibilidadHW') !== -1){
+						for(var val2 in tree['children'][val1]['children']){
+							//flujoCCN
+							if(tree['children'][val1]['children'][val2]['DName'].indexOf('FlujoCCN') !== -1){
+							}
+						}
+					}
+				}
+			}
+			readModel(tree);
 		},"json");
 		$.post('includes/php/render.php',{data:'fetch'},function(tree){
 			function readCache(tree){
