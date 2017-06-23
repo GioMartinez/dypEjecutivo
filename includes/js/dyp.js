@@ -907,5 +907,5 @@ $(document).ready(function(){
 				});
 			},"json");
 		},"json");
-	},5*60*1000);
+	});
 });
