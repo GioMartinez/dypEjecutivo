@@ -32,29 +32,29 @@ include_once('includes/php/config.php');
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-lock"></i> Número de Autenticaciones</span>
 										<h5 class="color-up" id="val_1">0</h5>
-										<span class="diff"><b class="color-up" id="color_1"><i class="fa fa-arrow-up" id="icon_1"></i> <span id="per_1">100</span>%</b></span>
+										<span class="diff"><b class="color-up" id="color_1"><i class="fa fa-arrow-up" id="icon_1"></i> <span id="per_1">0</span>%</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-user"></i> Usuarios Activos Totales</span>
 										<h5 class="color-up" id="val_2">0</h5>
-										<span class="diff"><b class="color-up" id="color_2"><i class="fa fa-arrow-up" id="icon_2"></i> <span id="per_2">100</span>%</b></span>
+										<span class="diff"><b class="color-up" id="color_2"><i class="fa fa-arrow-up" id="icon_2"></i> <span id="per_2">0</span>%</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-desktop"></i> Experiencia de Usuario</span><br>
 										<span class="diff"><b>
-											<span class="label label-success" id="okay_6" style="display:inline-block;">0</span>
-											<span class="label label-warning" id="warn_6" style="display:none;">0</span>
-											<span class="label label-danger" id="crit_6" style="display:none;">0</span>
-											<span class="label label-info" id="info_6" style="display:none;">10</span>
+											<span class="label label-success" id="okay_6">0</span>
+											<span class="label label-warning" id="warn_6">0</span>
+											<span class="label label-danger" id="crit_6">0</span>
+											<span class="label label-info" id="info_6">0</span>
 										</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-list-alt"></i> Principales portales</span><br>
 										<span class="diff"><b>
-											<span class="label label-success" id="okay_7" style="display:inline-block;">0</span>
-											<span class="label label-warning" id="warn_7" style="display:none;">0</span>
-											<span class="label label-danger" id="crit_7" style="display:none;">0</span>
-											<span class="label label-info" id="info_7" style="display:none;">7</span>
+											<span class="label label-success" id="okay_7">0</span>
+											<span class="label label-warning" id="warn_7">0</span>
+											<span class="label label-danger" id="crit_7">0</span>
+											<span class="label label-info" id="info_7">0</span>
 										</b></span>
 									</div>
 								</div>
@@ -65,26 +65,26 @@ include_once('includes/php/config.php');
 								<div class="row">
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-user-plus"></i> Nuevos Contribuyentes</span>
-										<h5 class="color-up" id="val_3">40</h5>
-										<span class="diff"><b class="color-up" id="color_3"><i class="fa fa-arrow-up" id="icon_3"></i> <span id="per_3">100</span>%</b></span>
+										<h5 class="color-up" id="val_3">0</h5>
+										<span class="diff"><b class="color-up" id="color_3"><i class="fa fa-arrow-up" id="icon_3"></i> <span id="per_3">0</span>%</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-file-text"></i> Declaraciones Realizadas</span>
 										<h5 class="color-up" id="val_4">0</h5>
-										<span class="diff"><b class="color-up" id="color_4"><i class="fa fa-arrow-up" id="icon_4"></i> <span id="per_4">100</span>%</b></span>
+										<span class="diff"><b class="color-up" id="color_4"><i class="fa fa-arrow-up" id="icon_4"></i> <span id="per_4">0</span>%</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-money"></i> Total Recaudado</span>
-										<h5 class="color-up" id="val_5">5</h5>
-										<span class="diff"><b class="color-up" id="color_5"><i class="fa fa-arrow-up" id="icon_5"></i> <span id="per_5">100</span>%</b></span>
+										<h5 class="color-up" id="val_5">0</h5>
+										<span class="diff"><b class="color-up" id="color_5"><i class="fa fa-arrow-up" id="icon_5"></i> <span id="per_5">0</span>%</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-server"></i> Identidades</span><br>
 										<span class="diff"><b>
-											<span class="label label-success" id="okay_8" style="display:inline-block;">0</span>
-											<span class="label label-warning" id="warn_8" style="display:none;">0</span>
-											<span class="label label-danger" id="crit_8" style="display:none;">0</span>
-											<span class="label label-info" id="info_8" style="display:none;">0</span>
+											<span class="label label-success" id="okay_8">0</span>
+											<span class="label label-warning" id="warn_8">0</span>
+											<span class="label label-danger" id="crit_8">0</span>
+											<span class="label label-info" id="info_8">0</span>
 										</b></span>
 									</div>
 								</div>

@@ -122,13 +122,14 @@ $(document).ready(function(){
 			itemHoverStyle:{color:'gray'}
 		}
 	};
+	Highcharts.setOptions(Highcharts.theme);
 	// Flip function not hover function
 	$("#flip").flip({axis: 'x'});
 	var hover=0;
 	window.setInterval(function(){
 		$("#flip").hover(function(){hover=1;},function(){hover=0;});
 		if(hover==0){$("#flip").flip('toggle');}
-	},2000);
+	},5000);
 	// Apply the theme
 	var pagosChart=0;
 	var autvsIntChart=0;
@@ -136,7 +137,6 @@ $(document).ready(function(){
 	var chartLineas=0;
 	var recibidasChar=0;
 	var chartVentWeb=0;
-	Highcharts.setOptions(Highcharts.theme);
 	var padding=$('.embed-responsive-32by9').css('padding-bottom');
 	$('.others').css('padding-bottom',padding);
 	$('.half').css('height',(parseInt(padding)/2));
@@ -356,6 +356,8 @@ $(document).ready(function(){
 							if(tree['children'][val1]['children'][val2]['DName'].indexOf('NuevosContribuyentes') !== -1){
 								var sumaNuevos=parseInt(tree['children'][val1]['children'][val2]['children'][0]['children'][0]['values'])+parseInt(tree['children'][val1]['children'][val2]['children'][1]['children'][0]['values']);
 								document.getElementById('val_3').innerHTML=sumaNuevos;
+								// obtener porcentaje
+								// porcentaje = ((nuevo/anterior)-1)*100
 							}
 						}
 					}
@@ -378,19 +380,76 @@ $(document).ready(function(){
 						for(var val2 in tree['children'][val1]['children']){
 							//flujoCCN
 							if(tree['children'][val1]['children'][val2]['DName'].indexOf('FlujoCCN') !== -1){
+								var countOkay=0;
+								var countWarn=0;
+								var countCrit=0;
+								var countInfo=0;
+								for(var val3 in tree['children'][val1]['children'][val2]['children'][0]['children']){
+									if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'OK'){countOkay++;}
+									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MINOR'){countWarn++;}
+									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MAJOR'){countWarn++;}
+									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'CRITICAL'){countCrit++;}
+									else{countInfo++;}
+								}
+								document.getElementById('okay_6').innerHTML = countOkay;
+								document.getElementById('warn_6').innerHTML = countWarn;
+								document.getElementById('crit_6').innerHTML = countCrit;
+								document.getElementById('info_6').innerHTML = countInfo;
+								if(countOkay==0){document.getElementById('okay_6').style.display = 'none';}
+								if(countWarn==0){document.getElementById('warn_6').style.display = 'none';}
+								if(countCrit==0){document.getElementById('crit_6').style.display = 'none';}
+								if(countInfo==0){document.getElementById('info_6').style.display = 'none';}
+								
 							}
 							//TOPPS
 							else if(tree['children'][val1]['children'][val2]['DName'].indexOf('TOPPS') !== -1){
+								var countOkay=0;
+								var countWarn=0;
+								var countCrit=0;
+								var countInfo=0;
+								for(var val3 in tree['children'][val1]['children'][val2]['children'][0]['children']){
+									if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'OK'){countOkay++;}
+									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MINOR'){countWarn++;}
+									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MAJOR'){countWarn++;}
+									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'CRITICAL'){countCrit++;}
+									else{countInfo++;}
+								}
+								document.getElementById('okay_7').innerHTML = countOkay;
+								document.getElementById('warn_7').innerHTML = countWarn;
+								document.getElementById('crit_7').innerHTML = countCrit;
+								document.getElementById('info_7').innerHTML = countInfo;
+								if(countOkay==0){document.getElementById('okay_7').style.display = 'none';}
+								if(countWarn==0){document.getElementById('warn_7').style.display = 'none';}
+								if(countCrit==0){document.getElementById('crit_7').style.display = 'none';}
+								if(countInfo==0){document.getElementById('info_7').style.display = 'none';}
 							}
 						}
 					}
 					//disponibilidad
 					else if(tree['children'][val1]['DName'].indexOf('DisponibilidadHW') !== -1){
 						for(var val2 in tree['children'][val1]['children']){
-							//flujoCCN
-							if(tree['children'][val1]['children'][val2]['DName'].indexOf('FlujoCCN') !== -1){
+							var countOkay=0;
+							var countWarn=0;
+							var countCrit=0;
+							var countInfo=0;
+							for(var val3 in tree['children'][val1]['children'][val2]['children']){
+								for(var val4 in tree['children'][val1]['children'][val2]['children'][val3]['children']){
+									if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'OK'){countOkay++;}
+									else if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'MINOR'){countWarn++;}
+									else if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'MAJOR'){countWarn++;}
+									else if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'CRITICAL'){countCrit++;}
+									else{countInfo++;}
+								}
 							}
 						}
+						document.getElementById('okay_8').innerHTML = countOkay;
+						document.getElementById('warn_8').innerHTML = countWarn;
+						document.getElementById('crit_8').innerHTML = countCrit;
+						document.getElementById('info_8').innerHTML = countInfo;
+						if(countOkay==0){document.getElementById('okay_8').style.display = 'none';}
+						if(countWarn==0){document.getElementById('warn_8').style.display = 'none';}
+						if(countCrit==0){document.getElementById('crit_8').style.display = 'none';}
+						if(countInfo==0){document.getElementById('info_8').style.display = 'none';}
 					}
 				}
 			}
@@ -848,5 +907,5 @@ $(document).ready(function(){
 				});
 			},"json");
 		},"json");
-	});
+	},5*60*1000);
 });
