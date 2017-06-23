@@ -191,7 +191,7 @@ $(document).ready(function(){
 		}
 	});
 	// Histórico de ingresos
-	window.setTimeout(function(){
+	function llenarGraficas(){
 		$.post('includes/php/render.php',{series:'pagos'},function(tree){
 			pagosChart=Highcharts.stockChart('a',{
 				chart:{
@@ -907,5 +907,9 @@ $(document).ready(function(){
 				});
 			},"json");
 		},"json");
-	});
+	};
+	llenarGraficas();
+	window.setInterval(function(){
+		llenarGraficas();
+	},5*60*1000);
 });
