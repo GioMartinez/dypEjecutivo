@@ -24,6 +24,7 @@ include_once('includes/php/config.php');
 						<a class="logo" href="http://www.sat.gob.mx/Paginas/Inicio.aspx"><img src="includes/img/SATLogo.svg" alt="SAT"></a>
 					</div>
 				</div>
+				<!--Hola mundo-->
 				<div class="col-sm-8 col-xs-12" style="display:none;">
 					<div id="flip" style="margin:5px;">
 						<div class="front">
