@@ -193,6 +193,14 @@ $(document).ready(function(){
 	// Histórico de ingresos
 	function llenarGraficas(){
 		$.post('includes/php/render.php',{series:'pagos'},function(tree){
+			
+			// prueba obtencion ultimo valor
+			if(typeof pagosChart.series !== 'undefined'){
+				var seriesLen=pagosChart.series[0];
+				var len=seriesLen.data.length;
+				var dato= seriesLen.data[len-1].y;
+			}
+			
 			pagosChart=Highcharts.stockChart('a',{
 				chart:{
 					type:'line',
@@ -346,6 +354,7 @@ $(document).ready(function(){
 					}]
 				});
 		},"json");
+		// peticion de datos al cache para marquesina
 		$.post('includes/php/render.php',{data:'fetchModel'},function(tree){
 			function readModel(tree){
 				for(var val1 in tree['children']){
@@ -911,5 +920,5 @@ $(document).ready(function(){
 	llenarGraficas();
 	window.setInterval(function(){
 		llenarGraficas();
-	},5*60*1000);
+	},10*1000);
 });
