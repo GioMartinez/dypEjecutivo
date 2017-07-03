@@ -76,16 +76,27 @@ class NOCface{
 			"channelName"=>"REALTIME",
 			"throttle"=>$responseThrottle
 		));
+		echo "<br>Alarma<br>";
+		print_r($result);
+		echo "<br>";
 		if(isset($result['getAlarmsReturn']['alarms']['alarms'])){
 			if(isset($result['getAlarmsReturn']['alarms']['alarms'][0])){
 				return null;
 			}
 			else{
+				$alarmValue = array();
 				foreach($result['getAlarmsReturn']['alarms']['alarms']['fields']['fields'] as$key=>$value){
-					if($value['name']=='Description'){
-						return $value['value'];
+					if($value['name']=='Description' && $value['value'] !== ''){
+						$alarmValue = $value['value'];
+					}
+					else if($value['name']=='DecDia'){
+						$alarmValue += array("DecDia" => $value['value']);
+					}
+					else if($value['name']=='DecMes'){
+						$alarmValue += array("DecMes" => $value['value']);
 					}
 				}
+				return $alarmValue;
 			}
 		}
 		//return $result['getAlarmsReturn']['alarms']['alarms']['fields']['fields'];
