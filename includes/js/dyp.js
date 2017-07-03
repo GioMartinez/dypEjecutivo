@@ -378,47 +378,66 @@ $(document).ready(function(){
 		// peticion de datos al cache para marquesina
 		$.post('includes/php/render.php',{data:'fetchModel'},function(tree){
 			function readModel(tree){
-				for(var val1 in tree['children']){
+				for(var index1 in tree['children']){
 					//autenticaciones
-					if(tree['children'][val1]['DName'].indexOf('AtenticacionesyUsuarios') !== -1){	
-						for(var val2 in tree['children'][val1]['children']){
+					if(tree['children'][index1]['DName'].indexOf('AtenticacionesyUsuarios') !== -1){	
+						for(var index2 in tree['children'][index1]['children']){
 							//nuevos contribuyentes
-							if(tree['children'][val1]['children'][val2]['DName'].indexOf('NuevosContribuyentes') !== -1){
-								var sumaNuevos=parseInt(tree['children'][val1]['children'][val2]['children'][0]['children'][0]['values'])+parseInt(tree['children'][val1]['children'][val2]['children'][1]['children'][0]['values']);
-								document.getElementById('val_3').innerHTML=sumaNuevos;
+							if(tree['children'][index1]['children'][index2]['DName'].indexOf('NuevosContribuyentes') !== -1){ // checa si está dentro de nuevos contrib
+								var sumaNuevos=parseInt(tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values'])+parseInt(tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
+								document.getElementById('val_1').innerHTML=sumaNuevos;
+								var altainter=parseInt (tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values']);
+								document.getElementById('val_3').innerHTML=altainter;
+								var rif=parseInt (tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
+								document.getElementById('val_3a').innerHTML=rif;
+								var algo=parseInt (tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values']);
+								document.getElementById('val_4').innerHTML=algo;
+								// cambio de color si es menor a 100%
+								if(algo<100){
+									$( "#val_1" ).removeClass( "color-up" ).addClass( "color-down" );
+								}
 								// obtener porcentaje
-								// porcentaje = ((nuevo/anterior)-1)*100
+								// porcentaje = ((nuevo/anterior)-1)*100 "Nuevos Contribuyentes"
+								var anterior=parseInt(tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
+								var nuevo=parseInt(tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values']);	
+								var porcentajeautentica = ((nuevo/anterior)-1)*100;
+								document.getElementById('per_3').innerHTML=porcentajeautentica.toFixed(1);  	
 							}
+									//porcentaje Número de Autenticaciones
+									// porcentaje = ((nuevo/anterior)-1)*100 "Nuevos Contribuyentes"
+									
+									//Declaraciones realizadas val_4
 						}
+						
 					}
 					//identidades
-					else if(tree['children'][val1]['DName'].indexOf('Identidades') !== -1){
+					else if(tree['children'][index1]['DName'].indexOf('Identidades') !== -1){
 					}
 					//declaraciones
-					else if(tree['children'][val1]['DName'].indexOf('Declaraciones') !== -1){
-						for(var val2 in tree['children'][val1]['children']){
+					else if(tree['children'][index1]['DName'].indexOf('Declaraciones') !== -1){
+						for(var index2 in tree['children'][index1]['children']){
 							//total declaraciones
-							if(tree['children'][val1]['children'][val2]['DName'].indexOf('TotalDeclaraciones') !== -1){
+							if(tree['children'][index1]['children'][index2]['DName'].indexOf('TotalDeclaraciones') !== -1){
 							}
 							//total recaudado
-							else if(tree['children'][val1]['children'][val2]['DName'].indexOf('TotalRecaudado') !== -1){
+							else if(tree['children'][index1]['children'][index2]['DName'].indexOf('TotalRecaudado') !== -1){
 							}
 						}
 					}
 					//pruebas sinteticas
-					else if(tree['children'][val1]['DName'].indexOf('PruebasSinteticas') !== -1){
-						for(var val2 in tree['children'][val1]['children']){
+					else if(tree['children'][index1]['DName'].indexOf('PruebasSinteticas') !== -1){
+						for(var index2 in tree['children'][index1]['children']){
 							//flujoCCN
-							if(tree['children'][val1]['children'][val2]['DName'].indexOf('FlujoCCN') !== -1){
+							if(tree['children'][index1]['children'][index2]['DName'].indexOf('FlujoCCN') !== -1){
 								var countOkay=0;
 								var countWarn=0;
 								var countCrit=0;
 								var countInfo=0;
-								for(var val3 in tree['children'][val1]['children'][val2]['children'][0]['children']){
-									if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'OK'){countOkay++;}
-									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MINOR'){countWarn++;}
-									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MAJOR'){countWarn++;}
-									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'CRITICAL'){countCrit++;}
+								for(var val3 in tree['children'][index1]['children'][index2]['children'][0]['children']){
+									if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'OK'){countOkay++;}
+									else if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'MINOR'){countWarn++;}
+									else if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'MAJOR'){countWarn++;}
+									else if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'CRITICAL'){countCrit++;}
 									else{countInfo++;}
 								}
 								document.getElementById('okay_6').innerHTML = countOkay;
@@ -432,16 +451,16 @@ $(document).ready(function(){
 								
 							}
 							//TOPPS
-							else if(tree['children'][val1]['children'][val2]['DName'].indexOf('TOPPS') !== -1){
+							else if(tree['children'][index1]['children'][index2]['DName'].indexOf('TOPPS') !== -1){
 								var countOkay=0;
 								var countWarn=0;
 								var countCrit=0;
 								var countInfo=0;
-								for(var val3 in tree['children'][val1]['children'][val2]['children'][0]['children']){
-									if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'OK'){countOkay++;}
-									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MINOR'){countWarn++;}
-									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'MAJOR'){countWarn++;}
-									else if(tree['children'][val1]['children'][val2]['children'][0]['children'][val3]['condition'] == 'CRITICAL'){countCrit++;}
+								for(var val3 in tree['children'][index1]['children'][index2]['children'][0]['children']){
+									if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'OK'){countOkay++;}
+									else if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'MINOR'){countWarn++;}
+									else if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'MAJOR'){countWarn++;}
+									else if(tree['children'][index1]['children'][index2]['children'][0]['children'][val3]['condition'] == 'CRITICAL'){countCrit++;}
 									else{countInfo++;}
 								}
 								document.getElementById('okay_7').innerHTML = countOkay;
@@ -456,18 +475,18 @@ $(document).ready(function(){
 						}
 					}
 					//disponibilidad
-					else if(tree['children'][val1]['DName'].indexOf('DisponibilidadHW') !== -1){
-						for(var val2 in tree['children'][val1]['children']){
+					else if(tree['children'][index1]['DName'].indexOf('DisponibilidadHW') !== -1){
+						for(var index2 in tree['children'][index1]['children']){
 							var countOkay=0;
 							var countWarn=0;
 							var countCrit=0;
 							var countInfo=0;
-							for(var val3 in tree['children'][val1]['children'][val2]['children']){
-								for(var val4 in tree['children'][val1]['children'][val2]['children'][val3]['children']){
-									if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'OK'){countOkay++;}
-									else if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'MINOR'){countWarn++;}
-									else if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'MAJOR'){countWarn++;}
-									else if(tree['children'][val1]['children'][val2]['children'][val3]['children'][val4]['condition'] == 'CRITICAL'){countCrit++;}
+							for(var val3 in tree['children'][index1]['children'][index2]['children']){
+								for(var val4 in tree['children'][index1]['children'][index2]['children'][val3]['children']){
+									if(tree['children'][index1]['children'][index2]['children'][val3]['children'][val4]['condition'] == 'OK'){countOkay++;}
+									else if(tree['children'][index1]['children'][index2]['children'][val3]['children'][val4]['condition'] == 'MINOR'){countWarn++;}
+									else if(tree['children'][index1]['children'][index2]['children'][val3]['children'][val4]['condition'] == 'MAJOR'){countWarn++;}
+									else if(tree['children'][index1]['children'][index2]['children'][val3]['children'][val4]['condition'] == 'CRITICAL'){countCrit++;}
 									else{countInfo++;}
 								}
 							}
@@ -941,5 +960,5 @@ $(document).ready(function(){
 	llenarGraficas();
 	window.setInterval(function(){
 		llenarGraficas();
-	},10*1000);
+	},5*60*1000);
 });
