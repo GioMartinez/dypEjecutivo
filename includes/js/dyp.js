@@ -27,6 +27,7 @@ $(document).ready(function(){
 	var contActiv={series:"cont1",property:"activ"};
 	var contInit={series:"cont1",property:"init"};
 	var acumulado;
+	var tiempo1=0;
 	Highcharts.theme={
 		lang:{
 			loading:'Cargando...',
@@ -195,10 +196,30 @@ $(document).ready(function(){
 		$.post('includes/php/render.php',{series:'pagos'},function(tree){
 			
 			// prueba obtencion ultimo valor
-			if(typeof pagosChart.series !== 'undefined'){
-				var seriesLen=pagosChart.series[0];
-				var len=seriesLen.data.length;
-				var dato= seriesLen.data[len-1].y;
+			if(typeof pagosChart.series !== 'undefined'){//chaca si ya existe la grafica
+				//var seriesLen=pagosChart.series[0];// es para obtener la serie
+				//var len=seriesLen.data.length;//es para obtener el numero de valores
+				//var dato= seriesLen.data[len-1].y;//es para obtener el ultimo valor
+				var suma=0;
+				for(var i=0;i<pagosChart.series[0].yData.length;i++){
+					suma+=pagosChart.series[0].yData[i];
+				}
+				var suma2=0
+				for(var key in tree){
+					suma2+=tree[key][1];
+				}
+				if(suma == suma2){
+					if(!$('#panel01').find("img").length){
+						$('#panel01').append("<img src='includes/img/nuevo.png' class='bandNew'></img>");
+						tiempo1=Date.now() / 1000 | 0;
+					}
+				}
+				var tiempo2=Date.now() / 1000 | 0;
+				if((tiempo1+20)<(tiempo2)){
+					if($('#panel01').find("img").length){
+						$('#panel01').find("img").remove();
+					}
+				}
 			}
 			
 			pagosChart=Highcharts.stockChart('a',{
