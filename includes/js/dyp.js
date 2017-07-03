@@ -369,6 +369,7 @@ $(document).ready(function(){
 								document.getElementById('val_3').innerHTML=altainter;
 								var rif=parseInt (tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
 								document.getElementById('val_3a').innerHTML=rif;
+								// declaraciones totales x dia y x mes
 								var algo=parseInt (tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values']);
 								document.getElementById('val_4').innerHTML=algo;
 								// cambio de color si es menor a 100%
