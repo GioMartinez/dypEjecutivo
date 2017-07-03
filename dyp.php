@@ -25,7 +25,7 @@ include_once('includes/php/config.php');
 					</div>
 				</div>
 				<!--Hola mundo-->
-				<div class="col-sm-8 col-xs-12" style="display:none;">
+				<div class="col-sm-8 col-xs-12">
 					<div id="flip" style="margin:5px;">
 						<div class="front">
 							<div class="container-fluid">
@@ -66,7 +66,9 @@ include_once('includes/php/config.php');
 								<div class="row">
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-user-plus"></i> Nuevos Contribuyentes</span>
-										<h5 class="color-up" id="val_3">0</h5>
+										<span><h5 class="color-up" id="val_3">0</h5>	
+										<h5 class="color-up" id="val_3a">0</h5>
+										</span>	
 										<span class="diff"><b class="color-up" id="color_3"><i class="fa fa-arrow-up" id="icon_3"></i> <span id="per_3">0</span>%</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
