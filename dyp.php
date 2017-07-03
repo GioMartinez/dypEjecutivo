@@ -32,7 +32,7 @@ include_once('includes/php/config.php');
 								<div class="row">
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-lock"></i> Número de Autenticaciones</span>
-										<h5 class="color-up" id="val_1">0</h5>
+										<h5 class="te-up" id="val_1">0</h5>
 										<span class="diff"><b class="color-up" id="color_1"><i class="fa fa-arrow-up" id="icon_1"></i> <span id="per_1">0</span>%</b></span>
 									</div>
 									<div class="col-sm-3 con-xs-12">
@@ -100,7 +100,7 @@ include_once('includes/php/config.php');
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id="panel01">
 						<div class="panel-heading">
 							<h4 class="panel-title">Histórico de Pagos por Linea de Captura</h4>
 							<a class="btn" id="pagosbtn">
