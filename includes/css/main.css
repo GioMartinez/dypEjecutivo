@@ -83,12 +83,6 @@ header{
 .nav > li > a{
 	padding:5px 15px;
 }
-.clear {
-	clear:both;
-	#container {
-    width:100%;
-    text-align:center;
-}
 #left {
     float:left;
     width:50%;
