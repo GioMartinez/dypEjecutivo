@@ -46,7 +46,7 @@ $(document).ready(function(){
 			printChart:'Imprimir',
 			resetZoom:'Reiniciar zoom',
 			resetZoomTitle:'Reiniciar zoom',
-			thousandsSep:",",
+			thousandsSep:",",	
 			decimalPoint:'.'
 		}
 	};
@@ -196,20 +196,20 @@ $(document).ready(function(){
 		$.post('includes/php/render.php',{series:'pagos'},function(tree){
 			
 			// prueba obtencion ultimo valor
-			if(typeof pagosChart.series !== 'undefined'){//chaca si ya existe la grafica
+			if(typeof pagosChart.series !== 'undefined'){//checa si ya existe la grafica
 				//var seriesLen=pagosChart.series[0];// es para obtener la serie
 				//var len=seriesLen.data.length;//es para obtener el numero de valores
-				//var dato= seriesLen.data[len-1].y;//es para obtener el ultimo valor
+				//var dato= seriesLen.data[len-1].y;//es para el ultimo valor
 				var suma=0;
 				for(var i=0;i<pagosChart.series[0].yData.length;i++){
 					suma+=pagosChart.series[0].yData[i];
 				}
-				var suma2=0
+				var suma2=0;
 				for(var key in tree){
 					suma2+=tree[key][1];
-				}
+				} 
 				if(suma == suma2){
-					if(!$('#panel01').find("img").length){
+					if(!$('#panel01').find("img").length){ //en panel historico de pagos por linea de captura
 						$('#panel01').append("<img src='includes/img/nuevo.png' class='bandNew'></img>");
 						tiempo1=Date.now() / 1000 | 0;
 					}
@@ -221,7 +221,7 @@ $(document).ready(function(){
 					}
 				}
 			}
-			
+			//aquí termina la inserción de etiquetas
 			pagosChart=Highcharts.stockChart('a',{
 				chart:{
 					type:'line',
@@ -382,6 +382,10 @@ $(document).ready(function(){
 					//autenticaciones
 					if(tree['children'][index1]['DName'].indexOf('AtenticacionesyUsuarios') !== -1){	
 						for(var index2 in tree['children'][index1]['children']){
+							if(tree['children'][index1]['children'][2]['children'][0]['DName'].indexOf('TotalUsers') !== -1){
+								var sumauth=parseInt(tree['children'][index1]['children'][2]['children'][0]['values']);
+								document.getElementById('val_2').innerHTML=sumauth;
+							}
 							//nuevos contribuyentes
 							if(tree['children'][index1]['children'][index2]['DName'].indexOf('NuevosContribuyentes') !== -1){ // checa si está dentro de nuevos contrib
 								var sumaNuevos=parseInt(tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values'])+parseInt(tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
@@ -390,9 +394,7 @@ $(document).ready(function(){
 								document.getElementById('val_3').innerHTML=altainter;
 								var rif=parseInt (tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
 								document.getElementById('val_3a').innerHTML=rif;
-								// declaraciones totales x dia y x mes
-								var algo=parseInt (tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values']);
-								document.getElementById('val_4').innerHTML=algo;
+								
 								// cambio de color si es menor a 100%
 								if(algo<100){
 									$( "#val_1" ).removeClass( "color-up" ).addClass( "color-down" );
@@ -401,15 +403,12 @@ $(document).ready(function(){
 								// porcentaje = ((nuevo/anterior)-1)*100 "Nuevos Contribuyentes"
 								var anterior=parseInt(tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
 								var nuevo=parseInt(tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values']);	
-								var porcentajeautentica = ((nuevo/anterior)-1)*100;
-								document.getElementById('per_3').innerHTML=porcentajeautentica.toFixed(1);  	
+								//var porcentajeautentica = ((nuevo/anterior)-1)*100;
+								//document.getElementById('per_3').innerHTML=porcentajeautentica.toFixed(1);  	
 							}
 									//porcentaje Número de Autenticaciones
 									// porcentaje = ((nuevo/anterior)-1)*100 "Nuevos Contribuyentes"
-									
-									//Declaraciones realizadas val_4
 						}
-						
 					}
 					//identidades
 					else if(tree['children'][index1]['DName'].indexOf('Identidades') !== -1){
@@ -417,12 +416,16 @@ $(document).ready(function(){
 					//declaraciones
 					else if(tree['children'][index1]['DName'].indexOf('Declaraciones') !== -1){
 						for(var index2 in tree['children'][index1]['children']){
-							//total declaraciones
+							//total declaraciones x dia y x mes
 							if(tree['children'][index1]['children'][index2]['DName'].indexOf('TotalDeclaraciones') !== -1){
+								var algo=parseInt (tree['children'][index1]['children'][index2]['children'][0]['values']['DecDia']);
+								document.getElementById('val_4').innerHTML=algo;
+								var algoa=parseInt (tree['children'][index1]['children'][index2]['children'][0]['values']['DecMes']);
+								document.getElementById('val_4a').innerHTML=algoa;	
 							}
-							//total recaudado
-							else if(tree['children'][index1]['children'][index2]['DName'].indexOf('TotalRecaudado') !== -1){
-							}
+								//total recaudado
+								else if(tree['children'][index1]['children'][index2]['DName'].indexOf('TotalRecaudado') !== -1){
+								}
 						}
 					}
 					//pruebas sinteticas
@@ -510,6 +513,9 @@ $(document).ready(function(){
 				for(var values in tree['children']){
 					if(tree['children'][values]['DName']=='PFTotalPagos=PFTotalPagosPFTotalPagos/Ejecutivo=Ejecutivo/DyPAnuales=DyPAnuales/root=Elements'){
 						fisicasP = parseInt(tree['children'][values]['values']); 
+							var fisicasP=parseInt(tree['children'][values]['values']);
+							document.getElementById('val_5').innerHTML=' $ ' + fisicasP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					
 					}
 					if(tree['children'][values]['DName'].indexOf('PagosPMEfectivo')>=0){
 						moralesP = parseInt(tree['children'][values]['values']);

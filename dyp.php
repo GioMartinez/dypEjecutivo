@@ -32,13 +32,13 @@ include_once('includes/php/config.php');
 								<div class="row">
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-lock"></i> Número de Autenticaciones</span>
-										<h5 class="te-up" id="val_1">0</h5>
-										<span class="diff"><b class="color-up" id="color_1"><i class="fa fa-arrow-up" id="icon_1"></i> <span id="per_1">0</span>%</b></span>
+										<h1 class="label label-success" id="val_1">0</h1>
+										<!--<span class="diff"><b class="color-up" id="color_1"><i class="fa fa-arrow-up" id="icon_1"></i> <span id="per_1">0</span>%</b></span>-->
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-user"></i> Usuarios Activos Totales</span>
-										<h5 class="color-up" id="val_2">0</h5>
-										<span class="diff"><b class="color-up" id="color_2"><i class="fa fa-arrow-up" id="icon_2"></i> <span id="per_2">0</span>%</b></span>
+										<h4 class="label label-success" id="val_2">0</h4>
+										<!--<span class="diff"><b class="color-up" id="color_2"><i class="fa fa-arrow-up" id="icon_2"></i> <span id="per_2">0</span>%</b></span>-->
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-desktop"></i> Experiencia de Usuario</span><br>
@@ -65,21 +65,41 @@ include_once('includes/php/config.php');
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-sm-3 con-xs-12">
-										<span class="title"><i class="fa fa-user-plus"></i> Nuevos Contribuyentes</span>
-										<span><h5 class="color-up" id="val_3">0</h5>	
-										<h5 class="color-up" id="val_3a">0</h5>
-										</span>	
-										<span class="diff"><b class="color-up" id="color_3"><i class="fa fa-arrow-up" id="icon_3"></i> <span id="per_3">0</span>%</b></span>
+										<div><span class="title"><i class="fa fa-user-plus"></i> Nuevos Contribuyentes</span></div>
+										<table>
+											<tr>
+												<th><span><i class="label label-info">Internet</i></th>
+													<th>&nbsp;&nbsp;&nbsp;</th>
+												<th><span><i class="label label-info">RIF</i></th>	
+											</tr>
+											<tr>
+											<th><h5 class="label label-success" id="val_3">0</h5></span></th>
+													<th>&nbsp;&nbsp;&nbsp;</th>
+											<th><h5 class="label label-success" id="val_3a">0</h5></span></th>
+											</tr>
+										</table>
+										<!--<span class="diff"><b class="color-up" id="color_3"><i class="fa fa-arrow-up" id="icon_3"></i> <span id="per_3">0</span>%</b></span>-->
 									</div>
+								<div class="col-sm-3 con-xs-12">
+									<div><span class="title"><i class="fa fa-file-text"></i> Declaraciones Realizadas</span></div>
+									<table>
+										<tr>
+											<th><span><i class="label label-info">Por día</i></th>
+											<th>&nbsp;&nbsp;&nbsp;</th>
+											<th><span><i class="label label-info">Por mes</i></th>	
+										</tr>
+										<tr>
+											<th><h5 class="label label-success" id="val_4">0</h5></th>
+											<th>&nbsp;&nbsp;&nbsp;</th>
+											<th><h5 class="label label-success" id="val_4a">0</h5></th>
+										</tr>
+									</table>
+									<!--<span class="diff"><b class="color-up" id="color_4"><i class="fa fa-arrow-up" id="icon_4"></i> <span id="per_4">0</span>%</b></span>-->
+								</div>
 									<div class="col-sm-3 con-xs-12">
-										<span class="title"><i class="fa fa-file-text"></i> Declaraciones Realizadas</span>
-										<h5 class="color-up" id="val_4">0</h5>
-										<span class="diff"><b class="color-up" id="color_4"><i class="fa fa-arrow-up" id="icon_4"></i> <span id="per_4">0</span>%</b></span>
-									</div>
-									<div class="col-sm-3 con-xs-12">
-										<span class="title"><i class="fa fa-money"></i> Total Recaudado</span>
-										<h5 class="color-up" id="val_5">0</h5>
-										<span class="diff"><b class="color-up" id="color_5"><i class="fa fa-arrow-up" id="icon_5"></i> <span id="per_5">0</span>%</b></span>
+										<div><span class="title"><i class="fa fa-money"></i> Total Recaudado</span></div>
+										<div><span class="label label-success"></span><h5 class="label label-success" id="val_5">0</h5></div>
+										<!--<span class="diff"><b class="color-up" id="color_5"><i class="fa fa-arrow-up" id="icon_5"></i> <span id="per_5">0</span>%</b></span>-->
 									</div>
 									<div class="col-sm-3 con-xs-12">
 										<span class="title"><i class="fa fa-server"></i> Identidades</span><br>

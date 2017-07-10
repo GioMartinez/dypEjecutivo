@@ -74,7 +74,7 @@ header{
 .color-down{
 	margin:0;
 	color:blue;
-}
+}	
 .col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12{
 	height:100%;
 	padding-right:5px;
@@ -82,6 +82,26 @@ header{
 }
 .nav > li > a{
 	padding:5px 15px;
+}
+.clear {
+	clear:both;
+	#container {
+    width:100%;
+    text-align:center;
+}
+#left {
+    float:left;
+    width:50%;
+}
+
+#center {
+    display: inline-block;
+    margin:0 auto;
+    width:100px;
+}
+#right {
+    float:right;
+    width:50%;
 }
 .alert{
 	margin-bottom:5px;

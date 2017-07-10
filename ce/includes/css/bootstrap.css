@@ -4877,11 +4877,12 @@ a.label:focus{
 	background-color:#449d44;
 }
 .label-info{
-	background-color:#5bc0de;
+	background-color:#196FD1;
 }
 .label-info[href]:hover,
 .label-info[href]:focus{
-	background-color:#31b0d5;
+	background-color:#196FD1;
+/*#31b0d5*/
 }
 .label-warning{
 	background-color:#f0ad4e;
