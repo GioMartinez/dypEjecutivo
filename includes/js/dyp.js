@@ -210,7 +210,7 @@ $(document).ready(function(){
 				} 
 				if(suma == suma2){
 					if(!$('#panel01').find("img").length){ //en panel historico de pagos por linea de captura
-						$('#panel01').append("<img src='includes/img/nuevo.png' class='bandNew'></img>");
+						$('#panel01').append("<img src='includes/img/nuevoblue.png' class='bandNew'></img>");
 						tiempo1=Date.now() / 1000 | 0;
 					}
 				}
