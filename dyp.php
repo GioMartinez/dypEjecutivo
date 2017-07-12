@@ -12,6 +12,7 @@ include_once('includes/php/config.php');
 	<link rel="stylesheet" href="includes/css/normalize.css"/>
 	<link rel="stylesheet" href="includes/css/bootstrap.css"/>
 	<link rel="stylesheet" href="includes/css/font-awesome.css"/>
+	<link rel="stylesheet" href="includes/css/noty.css"/>
 	<link rel="stylesheet" href="includes/css/main.css"/>
 </head>
 <body>
@@ -236,6 +237,7 @@ include_once('includes/php/config.php');
 	</div>
 	<script type="text/javascript" src="includes/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="includes/js/noty.js"></script>
 	<script type="text/javascript" src="includes/js/flip.js"></script>
 	<script type="text/javascript" src="includes/js/highstock.min.js"></script>
 	<script type="text/javascript" src="includes/js/funnel.min.js"></script>
