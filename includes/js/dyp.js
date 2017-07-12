@@ -195,9 +195,9 @@ $(document).ready(function(){
 	function llenarGraficas(){
 		$.post('includes/php/render.php',{series:'pagos'},function(tree){
 			
-			// prueba obtencion ultimo valor
+	// prueba obtencion ultimo valor
 			if(typeof pagosChart.series !== 'undefined'){//checa si ya existe la grafica
-				//var seriesLen=pagosChart.series[0];// es para obtener la serie
+				//var seriesLen=pagosChart.series[0];//es para obtener la serie
 				//var len=seriesLen.data.length;//es para obtener el numero de valores
 				//var dato= seriesLen.data[len-1].y;//es para el ultimo valor
 				var suma=0;
@@ -208,11 +208,11 @@ $(document).ready(function(){
 				for(var key in tree){
 					suma2+=tree[key][1];
 				} 
-				if(suma == suma2){
+				if(suma == suma2){//comparacion de datos
 					if(!$('#panel01').find("img").length){ //en panel historico de pagos por linea de captura
-						$('#panel01').append("<img src='includes/img/nuevoblue.png' class='bandNew'></img>");
+						$('#panel01').append( "<img src='includes/img/nuevoblue.png' class='bandNew'></img>" );
 						tiempo1=Date.now() / 1000 | 0;
-					}
+					}					
 				}
 				var tiempo2=Date.now() / 1000 | 0;
 				if((tiempo1+20)<(tiempo2)){
@@ -576,7 +576,7 @@ $(document).ready(function(){
 						yAxis:{
 							min:0,
 							max:TotalPFLC,
-							title:{text:'Físicas'}
+							title:{text:'Físicas'}						
 						},
 						plotOptions:{
 							solidgauge:{
@@ -598,7 +598,10 @@ $(document).ready(function(){
 							name:'Físicas',
 							data:[TotalPFLCPagada]
 						}]
-					}));
+					}
+					));
+					//Etiqueta "Nuevo" para "Tipo de contribuyente"
+					
 					// meta de recaudacion
 					fisicasMper = parseFloat(((acumulado/meta)*100).toFixed(4));
 					moralesMper = parseFloat(((moralesP/meta)*100).toFixed(4));
