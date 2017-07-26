@@ -193,34 +193,7 @@ $(document).ready(function(){
 	});
 	// Histórico de ingresos
 	function llenarGraficas(){
-		new Noty({
-			type: 'alert',
-			layout: 'bottomRight',
-			theme: 'mint',
-			text: ("<table><tr align='left'><img src='includes/img/micrologo.png' name='micro focus logo'></img></tr><tr>&nbsp&nbsp</tr><tr align='right'>Histórico de pagos por linea de captura</tr></table>"),
-			timeout: 5000,
-			progressBar: true,
-			closeWith: ['click', 'button'],
-			animation: {
-				open: 'noty_effects_open',
-				close: 'noty_effects_close'
-			},
-			id: false,
-			force: false,
-			killer: false,
-			queue: 'global',
-			container: false,
-			buttons: [],
-			sounds:{
-				sources:[],
-				volume: 1,
-				conditions: []
-			},
-			titleCount:{conditions: []},
-			modal: false
-		}).show();
 		$.post('includes/php/render.php',{series:'pagos'},function(tree){
-			
 			// prueba obtencion ultimo valor
 			if(typeof pagosChart.series !== 'undefined'){//checa si ya existe la grafica
 				//var seriesLen=pagosChart.series[0];// es para obtener la serie
@@ -233,37 +206,147 @@ $(document).ready(function(){
 				var suma2=0;
 				for(var key in tree){
 					suma2+=tree[key][1];
-				} 
+				}
+				// Recibir la variable para mostrar etiqueta y alimentar notificacion	 
 				if(suma == suma2){
 					if(!$('#panel01').find("img").length){ //en panel historico de pagos por linea de captura
-						$('#panel01').append("<img src='includes/img/nuevoblue.png' class='bandNew' id='band' name='band'></img>");
-						                        
-						tiempo1=Date.now() / 1000 | 0;
-					//alert("señal de etiqueta");	
-					}
-				}
+						$('#panel01').append("<img src='includes/img/nuevoblue.png' class='bandNew' id='band1' name='band1'></img>");			
 				//set Timeout
 				function quitarImagen(){
-				if ($('#band').hasClass('bandNew')) {
-            		$('#band').removeClass('bandNew');
-           	 		$('#band').addClass('ocultar');
-            
+					if ($('#band1').hasClass('bandNew')) {
+            			$('#band1').removeClass('bandNew');
+           	 			$('#band1').addClass('ocultar');
+        			}
+        			else {
+            			$('#band1').removeClass('ocultar');
+            			$('#band1').addClass('ocultar');
+       				 	}
+				}
+				setInterval(quitarImagen, 10000);							
+				//inserción de notificación
+				new Noty({
+					type: 'alert',
+					layout: 'bottomRight',
+					theme: 'mint',
+					text: ("<table><tr align='left'><img src='includes/img/micrologo.png' name='micro focus logo'></img></tr><tr>&nbsp&nbsp</tr><tr align='right'>Valor de histórico de pagos por linea de captura se actualizó a</tr><span id='panel001'>Valor</span></table>"),
+					timeout: 5000,
+					progressBar: true,
+					closeWith: ['click', 'button'],
+					animation: {
+						open: 'noty_effects_open',
+						close: 'noty_effects_close'
+					},
+					id: false,
+					force: false,
+					killer: false,
+					queue: 'global',
+					container: false,
+					buttons: [],
+					sounds:{
+						sources:[],
+						volume: 1,
+						conditions: []
+					},
+					titleCount:{conditions: []},
+					modal: false
+					}).show();
+				document.getElementById('panel001').innerHTML=' $ ' + suma2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				//fin de inserción de notificación		                        
+				tiempo1=Date.now() / 1000 | 0;						
+					}
+				}
+				// Recibir la variable para mostrar etiqueta y alimentar notificacion	 
+					if(!$('#panel02').find("img").length){ //en panel historico de pagos por linea de captura
+						$('#panel02').append("<img src='includes/img/nuevoblue.png' class='bandNew' id='band2' name='band2'></img>");		
+					function quitarImagen(){
+					if ($('#band2').hasClass('bandNew')) {
+            			$('#band2').removeClass('bandNew');
+           	 			$('#band2').addClass('ocultar');
+        			}
+        			else {
+            			$('#band2').removeClass('ocultar');
+            			$('#band2').addClass('ocultar');
+       				 	}
+					}
+				setInterval(quitarImagen, 10000);
+				//inserción de notificación
+				new Noty({
+					type: 'alert',
+					layout: 'bottomRight',
+					theme: 'mint',
+					text: ("<table><tr align='left'><img src='includes/img/micrologo.png' name='micro focus logo'></img></tr><tr>&nbsp&nbsp</tr><tr align='right'>Valor de tipo de contribuyente se actualizó a</tr><span id='panel002'>Valor</span></table>"),
+					timeout: 5000,
+					progressBar: true,
+					closeWith: ['click', 'button'],
+					animation: {
+						open: 'noty_effects_open',
+						close: 'noty_effects_close'
+					},
+					id: false,
+					force: false,
+					killer: false,
+					queue: 'global',
+					container: false,
+					buttons: [],
+					sounds:{
+						sources:[],
+						volume: 1,
+						conditions: []
+					},
+					titleCount:{conditions: []},
+					modal: false
+					}).show();
+				document.getElementById('panel002').innerHTML=' $ ' + suma2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");		                        
+				tiempo1=Date.now() / 1000 | 0;						
+					}
+				//set Timeout
+				if(!$('#panel03').find("img").length){ //en panel historico de pagos por linea de captura
+					$('#panel03').append("<img src='includes/img/nuevoblue.png' class='bandNew' id='band3' name='band3'></img>");		
+				//inserción de notificación
+				new Noty({
+					type: 'alert',
+					layout: 'bottomRight',
+					theme: 'mint',
+					text: ("<table><tr align='left'><img src='includes/img/micrologo.png' name='micro focus logo'></img></tr><tr>&nbsp&nbsp</tr><tr align='right'>Valor de Meta de recaudación se actualizó a</tr><span id='panel003'>Valor</span></table>"),
+					timeout: 5000,
+					progressBar: true,
+					closeWith: ['click', 'button'],
+					animation: {
+						open: 'noty_effects_open',
+						close: 'noty_effects_close'
+					},
+					id: false,
+					force: false,
+					killer: false,
+					queue: 'global',
+					container: false,
+					buttons: [],
+					sounds:{
+						sources:[],
+						volume: 1,
+						conditions: []
+					},
+					titleCount:{conditions: []},
+					modal: false
+					}).show();
+				document.getElementById('panel003').innerHTML=' $ ' + suma2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				//fin de inserción de notificación		                        
+					tiempo1=Date.now() / 1000 | 0;					
+					}
+				//set Timeout
+				function quitarImagen(){
+				if ($('#band3').hasClass('bandNew')) {
+            		$('#band3').removeClass('bandNew');
+           	 		$('#band3').addClass('ocultar');
         		}
         		else {
-            		$('#band').removeClass('ocultar');
-            		$('#band').addClass('ocultar');
+            		$('#band3').removeClass('ocultar');
+            		$('#band3').addClass('ocultar');
        				 }
 				}
-				setInterval(quitarImagen, 10000);	
-							
-				/*var tiempo2=Date.now() / 1000 | 0;
-				if((tiempo1+1)<(tiempo2)){
-					if($('#panel01').find("img").length){
-						$('#band').hide();
-					}
-				}*/
+				setInterval(quitarImagen, 10000);				
 			}
-			//aquí termina la inserción de etiquetas
+			//Termina inserción de etiqueta y notificación para historicos de pagos
 			pagosChart=Highcharts.stockChart('a',{
 				chart:{
 					type:'line',
@@ -284,8 +367,9 @@ $(document).ready(function(){
 							count+=this.yData[i];
 						}
 						acumulado=count;
-						return 'Acumulado de '+this.name+':<br>$ '+count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+							return 'Acumulado de '+this.name+':<br>$ '+count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 					},
+					
 					floating:true,
 					align:'left',
 					verticalAlign:'middle'
@@ -296,20 +380,35 @@ $(document).ready(function(){
 					dataGrouping:{enabled:false},
 					data:tree
 				}]
-			});
+			});									
 		},"json");
 		$.post('includes/php/render.php',contActiv,function(result1){
 			var cont1Activ=result1;
+			//var res=result1.length;
+				//alert(res);
+			/*var val=0;
+			for(var val=0;val<autvsIntChart.series[1].yData.length;val++){
+				val+=autvsIntChart.serie[1].yData[val];
+				alert(val);
+			}*/
+			//result1[res][0];
+			
+			
+			/*if(typeof autvsIntChart.series !== 'undefined'){
+				var res = result1.length;
+				var val = res[val][1];
+				alert(res);
+				alert(val);
+			}*/			                      
 			$.post('includes/php/render.php',contInit,function(result2){
 				var cont1Init=result2;
-				//chartLineas.series[1].setData(recibidasHist);
-				autvsIntChart = Highcharts.stockChart('c1',{
+				autvsIntChart = Highcharts.stockChart('c1',{					
 					chart:{
 						type:'line',
 						zoomType:'x',
 						panning:true,
 						panKey:'shift'
-					},
+					},					
 					title:{text:''},
 					navigator:{enabled:false},
 					scrollbar:{enabled:false},
@@ -320,7 +419,7 @@ $(document).ready(function(){
 						floating:true,
 						align:'left',
 						verticalAlign:'middle'
-					},
+					},					
 					series:[{
 						name:'Sesiones Activas',
 						data:cont1Activ
@@ -328,9 +427,8 @@ $(document).ready(function(){
 						name:'Inicios de Sesión',
 						color:'#50B432',
 						data:cont1Init
-					}]
-				});
-				
+					}]		
+				});				
 			},"json");
 		},"json");
 		$.post('includes/php/render.php',contInit,function(result1){
@@ -338,7 +436,7 @@ $(document).ready(function(){
 			$.post('includes/php/render.php',{series:'cont1'},function(result2){
 				var IniciosLast=result2;
 				for(var i in IniciosLast){
-					IniciosLast[i][0]+=31550400000;
+					IniciosLast[i][0]+=31550400000;					
 				}
 				//chartLineas.series[1].setData(recibidasHist);
 				compareCahrt = Highcharts.stockChart('c2',{
@@ -372,6 +470,8 @@ $(document).ready(function(){
 			},"json");
 		},"json");
 		$.post('includes/php/render.php',{pie:'obtencion'},function(result){
+			//Obtencion de nuevas contraseñas
+			 	
 				// La Cont 3
 				obtencionChart=Highcharts.chart('c3',{
 					chart:{
@@ -431,7 +531,8 @@ $(document).ready(function(){
 							//nuevos contribuyentes
 							if(tree['children'][index1]['children'][index2]['DName'].indexOf('NuevosContribuyentes') !== -1){ // checa si está dentro de nuevos contrib
 								var sumaNuevos=parseInt(tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values'])+parseInt(tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
-								document.getElementById('val_1').innerHTML=sumaNuevos;
+								if (isNaN('sumaNuevos')) result = 0;
+								document.getElementById('val_1').innerHTML=sumaNuevos;			
 								var altainter=parseInt (tree['children'][index1]['children'][index2]['children'][0]['children'][0]['values']);
 								document.getElementById('val_3').innerHTML=altainter;
 								var rif=parseInt (tree['children'][index1]['children'][index2]['children'][1]['children'][0]['values']);
@@ -551,19 +652,20 @@ $(document).ready(function(){
 			readModel(tree);
 		},"json");
 		$.post('includes/php/render.php',{data:'fetch'},function(tree){
+			
 			function readCache(tree){
 				for(var values in tree['children']){
 					if(tree['children'][values]['DName']=='PFTotalPagos=PFTotalPagosPFTotalPagos/Ejecutivo=Ejecutivo/DyPAnuales=DyPAnuales/root=Elements'){
 						fisicasP = parseInt(tree['children'][values]['values']); 
 							var fisicasP=parseInt(tree['children'][values]['values']);
 							document.getElementById('val_5').innerHTML=' $ ' + fisicasP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					
 					}
 					if(tree['children'][values]['DName'].indexOf('PagosPMEfectivo')>=0){
 						moralesP = parseInt(tree['children'][values]['values']);
 					}
 					if(tree['children'][values]['DName']=='TotalesVenDia=TotalesVenTotalesVen/Ejecutivo=Ejecutivo/DyPAnuales=DyPAnuales/root=Elements'){
 						totalesVen = parseInt(tree['children'][values]['values']); 
+						
 					}
 					if(tree['children'][values]['DName']=='TotalesWebDia=TotalesWebTotalesWeb/Ejecutivo=Ejecutivo/DyPAnuales=DyPAnuales/root=Elements'){
 						totalesWeb = parseInt(tree['children'][values]['values']); 
@@ -772,7 +874,7 @@ $(document).ready(function(){
 					}]
 				}));
 				// declaraciones recibidas
-				var sumVW = document.getElementById('decRec'); 
+				var sumVW = document.getElementById('decRec');
 				document.getElementById('decRec').innerHTML=sumVW.innerHTML+': '+(totalesVen+totalesWeb);
 				recibidasChar=Highcharts.chart('e',{
 					chart:{type:'pie'},
@@ -805,7 +907,7 @@ $(document).ready(function(){
 							name:'Internet',
 							y:totalesWeb
 						}]
-					}]
+					}]					
 				});
 				// recepcion vs linea de captura
 				Highcharts.chart('f',{
@@ -969,6 +1071,62 @@ $(document).ready(function(){
 			//chartLineas.series[0].setData(lineasHist);
 			$.post('includes/php/render.php',{series:'recibidas'},function(tree2){
 				recibidasHist=tree2;
+				if(typeof recibidasChar.series !== 'undefined')
+					var reci=0;
+				for(var i=0;i<recibidasChar.series[0].yData.length;i++){
+					reci+=recibidasChar.series[0].yData[i];
+				}
+				var reci2=0;
+				for(var key in tree2){
+					reci2+=tree2[key][1];	
+				}
+				if(reci2 != 0){
+					if(!$('#panel09').find("img").length){
+						$('#panel09').append("<img src='includes/img/nuevoblue.png' class='bandNew' id='band9' name='band9'></img>");			
+				//set Timeout
+				function quitarImagen(){
+					if ($('#band9').hasClass('bandNew')) {
+            			$('#band9').removeClass('bandNew');
+           	 			$('#band9').addClass('ocultar');
+        			}
+        			else {
+            			$('#band9').removeClass('ocultar');
+            			$('#band9').addClass('ocultar');
+       				 	}
+				}
+				setInterval(quitarImagen, 10000);							
+				new Noty({
+					type: 'alert',
+					layout: 'bottomRight',
+					theme: 'mint',
+					text: ("<table><tr align='left'><img src='includes/img/micrologo.png' name='micro focus logo'></img></tr><tr>&nbsp&nbsp</tr><tr align='right'>Valor de histórico de pagos por linea de captura se actualizó a</tr><span id='panel009'>Valor</span></table>"),
+					timeout: 5000,
+					progressBar: true,
+					closeWith: ['click', 'button'],
+					animation: {
+						open: 'noty_effects_open',
+						close: 'noty_effects_close'
+					},
+					id: false,
+					force: false,
+					killer: false,
+					queue: 'global',
+					container: false,
+					buttons: [],
+					sounds:{
+						sources:[],
+						volume: 1,
+						conditions: []
+					},
+					titleCount:{conditions: []},
+					modal: false
+					}).show();
+				//document.getElementById('panel009').innerHTML=reci2;
+				document.getElementById('panel009').innerHTML='&nbsp' + reci2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				//fin de inserción de notificación		                        
+				tiempo1=Date.now() / 1000 | 0;
+					}
+				}	
 				//chartLineas.series[1].setData(recibidasHist);
 				chartLineas = Highcharts.stockChart('g',{
 					chart:{
@@ -987,24 +1145,26 @@ $(document).ready(function(){
 						labelFormatter:function(){
 							var count=0;
 							for(var i=0;i<this.yData.length;i++){
-								count+=this.yData[i];
+								count+=this.yData[i];													
 							}
-							return 'Acumulado de '+this.name+': '+count.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+					////////////////////////	
+					////////////////////////
+							return 'Acumulado de '+this.name+': '+count.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");							 																		
 						},
 						floating:true,
-						align:'left',
+						align:'left',	
 						verticalAlign:'middle'
 					},
 					series:[{
 						name:'L. de C.',
-						data:lineasHist
+						data:lineasHist						
 					},{
 						name:'Recepción',
 						data:recibidasHist
 					}]
-				});
+				});				
 			},"json");
-		},"json");
+		},"json");		
 	};
 	llenarGraficas();
 	window.setInterval(function(){

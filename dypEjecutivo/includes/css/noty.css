@@ -42,7 +42,8 @@
 #noty_layout__bottomLeft {
   bottom: 20px;
   left: 20px;
-  width: 325px; }
+  width: 325px;
+  height: 40px; }
 
 #noty_layout__bottomCenter {
   bottom: 5%;
@@ -54,7 +55,7 @@
 #noty_layout__bottomRight {
   bottom: 20px;
   right: 20px;
-  width: 500px; }
+  width: 650px; }
 
 #noty_layout__center {
   top: 50%;
@@ -317,6 +318,9 @@
 .noty_theme__mint.noty_type__notification {
   background-color: #F3F5F6;
   border-bottom: 1px solid #000000;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px; 
   color: #000000; }
 
 .noty_theme__mint.noty_type__warning {
