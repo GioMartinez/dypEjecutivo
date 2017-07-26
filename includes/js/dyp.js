@@ -286,6 +286,20 @@ $(document).ready(function(){
 			var cont1Activ=result1;
 			$.post('includes/php/render.php',contInit,function(result2){
 				var cont1Init=result2;
+				//comprobar si la gráfica ya está definida y formada
+				if(typeof autvsIntChart.series !== 'undefined'){
+					// para obtener los valores previos
+					var prevIndex1 = autvsIntChart.series[0].yData.length; // index para la serie 1
+					var prevIndex2 = autvsIntChart.series[1].yData.length; // index para la serie 2
+					var prevVal1 = autvsIntChart.series[0].yData[prevIndex1-1]; // valor de la serie 1
+					var prevVal2 = autvsIntChart.series[1].yData[prevIndex2-1]; // valor de la serie 2
+					// para obtener los nuevos valores
+					var currIndex1 = cont1Activ.length; // index para la serie 1
+					var currIndex2 = cont1Init.length; // index para la serie 2
+					var currVal1 = cont1Activ[currIndex1-1][1]; // valor de la serie 1
+					var currVal2 = cont1Init[currIndex2-1][1]; // valor de la serie 2
+					// y aquí haces la comprobación de prevVal1 contra currVal1 y prevVal2 contra currVal2
+				}
 				//chartLineas.series[1].setData(recibidasHist);
 				autvsIntChart = Highcharts.stockChart('c1',{
 					chart:{
