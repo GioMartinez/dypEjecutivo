@@ -32,7 +32,7 @@ include_once('includes/php/config.php');
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-sm-3 con-xs-12">
-										<span class="title"><i class="fa fa-lock"></i> Número de Autenticaciones</span>
+										<span class="title"><i class="fa fa-lock"></i> Número de Autenticaciones.</span>
 										<h1 class="label label-success" id="val_1">0</h1>
 										<!--<span class="diff"><b class="color-up" id="color_1"><i class="fa fa-arrow-up" id="icon_1"></i> <span id="per_1">0</span>%</b></span>-->
 									</div>
@@ -136,7 +136,7 @@ include_once('includes/php/config.php');
 					</div>
 				</div>
 				<div class="col-sm-2 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel02'>
 						<div class="panel-heading"><h4 class="panel-title">Tipo de Contribuyente</h4></div>
 						<div class="panel-body">
 							<div class="col-xs-12 half" id="b"></div>
@@ -145,7 +145,7 @@ include_once('includes/php/config.php');
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel03'>
 						<div class="panel-heading"><h4 class="panel-title">Meta de Recaudación (2.8 Billones)</h4></div>
 						<div class="panel-body">
 							<div class="col-xs-12" id="d"></div>
@@ -155,7 +155,7 @@ include_once('includes/php/config.php');
 			</div>
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel04'>
 						<div class="panel-heading">
 							<h4 class="panel-title">Autenticaciones vs Intentos</h4>
 							<a class="btn" id="autvsintbtn">
@@ -168,7 +168,7 @@ include_once('includes/php/config.php');
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel05'>
 						<div class="panel-heading">
 							<h4 class="panel-title">Ejercicio Actual vs Anterior</h4>
 							<a class="btn" id="comparbtn">
@@ -181,7 +181,7 @@ include_once('includes/php/config.php');
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel06'>
 						<div class="panel-heading"><h4 class="panel-title">Obtención de nuevas Contraseñas</h4></div>
 						<div class="panel-body">
 							<div class="col-xs-12" id="c3"></div>
@@ -191,7 +191,7 @@ include_once('includes/php/config.php');
 			</div>
 			<div class="row">
 				<div class="col-sm-3 col-xs-12" style="display: none;">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel07'>
 						<div class="panel-heading"><h4 class="panel-title" id="decRec">Declaraciones Recibidas</h4></div>
 						<div class="panel-body">
 							<div class="col-xs-12" id="e"></div>
@@ -199,7 +199,7 @@ include_once('includes/php/config.php');
 					</div>
 				</div>
 				<div class="col-sm-3 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel08'>
 						<div class="panel-heading"><h4 class="panel-title">Recepción vs Línea de Captura</h4></div>
 						<div class="panel-body">
 							<div class="col-xs-12" id="f"></div>
@@ -207,7 +207,7 @@ include_once('includes/php/config.php');
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel09'>
 						<div class="panel-heading">
 							<h4 class="panel-title">Histórico de Recepción vs Línea de Captura</h4>
 							<a class="btn" id="lineasbtn">
@@ -217,10 +217,10 @@ include_once('includes/php/config.php');
 						<div class="panel-body">
 							<div class="col-xs-12" id="g"></div>
 						</div>
-					</div>
+					</div>	
 				</div>
 				<div class="col-sm-5 col-xs-12">
-					<div class="panel panel-default">
+					<div class="panel panel-default" id='panel10'>
 						<div class="panel-heading">
 							<h4 class="panel-title">Declaraciones Recibidas</h4>
 							<a class="btn" id="recibidasbtn">
