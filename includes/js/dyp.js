@@ -286,6 +286,7 @@ $(document).ready(function(){
 			var cont1Activ=result1;
 			$.post('includes/php/render.php',contInit,function(result2){
 				var cont1Init=result2;
+				// segundo commit
 				//comprobar si la gráfica ya está definida y formada
 				if(typeof autvsIntChart.series !== 'undefined'){
 					// para obtener los valores previos

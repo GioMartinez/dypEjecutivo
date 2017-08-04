@@ -32,7 +32,8 @@ include_once('includes/php/config.php');
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-sm-3 con-xs-12">
-										<span class="title"><i class="fa fa-lock"></i> Número de Autenticaciones</span>
+										<!--commit test-->
+										<span class="title"><i class="fa fa-lock"></i> Número de Autenticaciones(test)</span>
 										<h1 class="label label-success" id="val_1">0</h1>
 										<!--<span class="diff"><b class="color-up" id="color_1"><i class="fa fa-arrow-up" id="icon_1"></i> <span id="per_1">0</span>%</b></span>-->
 									</div>
